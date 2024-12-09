@@ -63,6 +63,7 @@ h1, h2, h3 {
             background-color: #d0d0d0;
 /*            position: absolute;*/
 overflow: auto;
+position: relative;
 flex: 2;
 height: 60vh;
 align-items: center;
@@ -130,4 +131,7 @@ justify-content: center;
  
 #network-diagram svg {
     flex-shrink: 0; /* Prevent the SVG from shrinking */
+    position: absolute;
+    top: 0;
+    left: 0;   
 }

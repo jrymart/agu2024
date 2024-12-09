@@ -44,8 +44,8 @@ function buildNetwork () {
     const networkDiagram = document.getElementById("network-diagram");
     //const width = networkDiagram.clientWidth;
     //const height = networkDiagram.clientHeight;
-    const width = 1100;
-    const height = 1400;
+    const width = 1000;
+    const height = 1000;
     const border=500;//100;
     const node_height =  40;
     console.log(width, height);
@@ -63,7 +63,7 @@ function buildNetwork () {
     const simulation = d3.forceSimulation(layers)
     //    .force("link", d3.forceLink(links).id(d => d.id).distance(100))
         .force("charge", d3.forceManyBody().strength(-40))
-        .force("center", d3.forceCenter(width/2, height/2))
+        .force("center", d3.forceCenter(height/2, width/2))
         .force("y", d3.forceY(function(d){
         const xpos = d.layer_index*width/num_layers
         console.log(xpos)
@@ -115,6 +115,12 @@ function buildNetwork () {
         label
             .attr("x", d => d.x)
             .attr("y", d => d.y);
+            const xExtent = d3.extent(node.data(), d => d.x);
+            const yExtent = d3.extent(node.data(), d => d.y);
+            const newWidth = Math.abs(xExtent[0]) + xExtent[1];
+            const newHeight = Math.abs(yExtent[0]) + yExtent[1];
+            svg.attr("viewBox", [xExtent[0], yExtent[0], newWidth, newHeight]);
+        
     });
 };
 //});
